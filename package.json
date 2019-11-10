@@ -1,0 +1,22 @@
+{
+  "name": "natours-api",
+  "version": "1.0.0",
+  "description": "Natours API Project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ochanissi/Natours-API.git"
+  },
+  "author": "Mirel Bitoi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ochanissi/Natours-API/issues"
+  },
+  "homepage": "https://github.com/Ochanissi/Natours-API#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
