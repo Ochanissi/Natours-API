@@ -52,7 +52,7 @@ exports.createTour = catchAsync(async (req, res, next) => {
   res.status(201).json({
     status: 'success',
     data: {
-      tours: newTour
+      tour: newTour
     }
   });
 });
@@ -100,8 +100,8 @@ exports.getTourStats = catchAsync(async (req, res, next) => {
         numRatings: { $sum: '$ratingsQuantity' },
         avgRating: { $avg: '$ratingsAverage' },
         avgPrice: { $avg: '$price' },
-        minPirce: { $min: '$price' },
-        maxPirce: { $max: '$price' }
+        minPrice: { $min: '$price' },
+        maxPrice: { $max: '$price' }
       }
     },
     {
