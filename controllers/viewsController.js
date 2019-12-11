@@ -1,5 +1,5 @@
-const Tour = require('./../models/tourModel');
-const catchAsync = require('./../utils/catchAsync');
+const Tour = require('../models/tourModel');
+const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/apiFeatures');
 
 exports.getOverview = catchAsync(async (req, res) => {
@@ -39,5 +39,11 @@ exports.getTour = catchAsync(async (req, res, next) => {
 exports.getLoginForm = (req, res, next) => {
   res.status(200).render('login', {
     title: 'Log into your account'
+  });
+};
+
+exports.getAccount = (req, res) => {
+  res.status(200).render('login', {
+    title: 'Your account'
   });
 };
