@@ -8380,7 +8380,7 @@ exports.hideAlert = hideAlert;
 var showAlert = function showAlert(type, msg) {
   hideAlert();
   var markup = "<div class=\"alert alert--".concat(type, "\">").concat(msg, "</div>");
-  document.querySelector('.body').insertAdjacentHTML('afterbegin', markup);
+  document.querySelector('body').insertAdjacentHTML('afterbegin', markup);
   windows.setTimeout(hideAlert, 5000);
 };
 
@@ -8410,7 +8410,7 @@ var login = function login(email, password) {
           _context.next = 3;
           return regeneratorRuntime.awrap((0, _axios.default)({
             method: 'POST',
-            url: 'htpp://127.0.0.1:3000/api/v1/users/login',
+            url: 'http://127.0.0.1:3000/api/v1/users/login',
             data: {
               email: email,
               password: password
@@ -8420,7 +8420,7 @@ var login = function login(email, password) {
         case 3:
           res = _context.sent;
 
-          if (res.data.status = 'success') {
+          if (res.data.status === 'success') {
             (0, _alerts.showAlert)('success', 'Logged in successfully!');
             window.setTimeout(function () {
               location.assign('/');
@@ -8433,7 +8433,7 @@ var login = function login(email, password) {
         case 7:
           _context.prev = 7;
           _context.t0 = _context["catch"](0);
-          (0, _alerts.showAlert)('error', _context.t0.response.data.json);
+          (0, _alerts.showAlert)('error', _context.t0.response.data.message);
 
         case 10:
         case "end":
@@ -8454,21 +8454,23 @@ var logout = function logout() {
           _context2.prev = 0;
           _context2.next = 3;
           return regeneratorRuntime.awrap((0, _axios.default)({
-            url: 'htpp://127.0.0.1:3000/api/v1/users/logout'
+            method: 'GET',
+            url: 'http://127.0.0.1:3000/api/v1/users/logout'
           }));
 
         case 3:
           res = _context2.sent;
-          if (res.data.status === 'success') location.reload(true);
-          _context2.next = 10;
+          if (res.data.status = 'success') location.reload(true);
+          _context2.next = 11;
           break;
 
         case 7:
           _context2.prev = 7;
           _context2.t0 = _context2["catch"](0);
+          console.log(_context2.t0.response);
           (0, _alerts.showAlert)('error', 'Error logging out! Try again.');
 
-        case 10:
+        case 11:
         case "end":
           return _context2.stop();
       }
@@ -8805,16 +8807,16 @@ var _updateSettings = require("./updateSettings");
 var mapBox = document.getElementById('map');
 var loginForm = document.querySelector('.form--login');
 var logOutBtn = document.querySelector('.nav__el--logout');
-var userDataForm = docuent.querySelector('.form-user-data');
-var userPasswordForm = docuent.querySelector('.form-user-password'); // DELEGATION
+var userDataForm = document.querySelector('.form-user-data');
+var userPasswordForm = document.querySelector('.form-user-password'); // DELEGATION
 
 if (mapBox) {
-  var locations = JSON.parse(document.getElementById('map').dataset.locations);
+  var locations = JSON.parse(mapBox.dataset.locations);
   (0, _mapbox.displayMap)(locations);
 }
 
 if (loginForm) {
-  document.querySelector('.form').addEventListener('submit', function (e) {
+  loginForm.addEventListener('submit', function (e) {
     e.preventDefault();
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
@@ -8853,10 +8855,10 @@ if (userPasswordForm) {
               passwordCurrent: passwordCurrent,
               password: password,
               passwordConfirm: passwordConfirm
-            }, 'data'));
+            }, 'password'));
 
           case 7:
-            document.querySelector('.btn--save-password').textContent = 'Save password...';
+            document.querySelector('.btn--save-password').textContent = 'Save password';
             document.getElementById('password-current').value = '';
             document.getElementById('password').value = '';
             document.getElementById('password-confirm').value = '';
@@ -8897,7 +8899,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50876" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64413" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -9074,4 +9076,4 @@ function hmrAcceptRun(bundle, id) {
   }
 }
 },{}]},{},["../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
-//# sourceMappingURL=/bundle.js.map
+//# sourceMappingURL=/js/bundle.js.map
