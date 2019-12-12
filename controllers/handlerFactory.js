@@ -24,7 +24,7 @@ exports.updateOne = Model =>
     });
 
     if (!doc) {
-      return next(new AppError('No tour found with that ID', 404));
+      return next(new AppError('No document found with that ID', 404));
     }
 
     res.status(200).json({
@@ -54,7 +54,7 @@ exports.getOne = (Model, popOptions) =>
     const doc = await query;
 
     if (!doc) {
-      return next(new AppError('No tour found with that ID', 404));
+      return next(new AppError('No document found with that ID', 404));
     }
 
     res.status(200).json({
@@ -67,7 +67,7 @@ exports.getOne = (Model, popOptions) =>
 
 exports.getAll = Model =>
   catchAsync(async (req, res, next) => {
-    // To allow for nester GET reviews on Tour
+    // To allow for nested GET reviews on Tour
     let filter = {};
     if (req.params.tourId) filter = { tour: req.params.tourId };
     // EXECUTE QUERY
@@ -85,7 +85,7 @@ exports.getAll = Model =>
       status: 'success',
       results: doc.length,
       data: {
-        date: doc
+        data: doc
       }
     });
   });
