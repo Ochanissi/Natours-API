@@ -33,7 +33,7 @@ export const displayMap = locations => {
       offset: 30
     })
       .setLngLat(loc.coordinates)
-      .setHTML(`<p> ${loc.day}: ${loc.description}</p>`)
+      .setHTML(`<p>Day ${loc.day}: ${loc.description}</p>`)
       .addTo(map);
 
     // Extend the map bounds to include current location

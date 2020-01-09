@@ -27,10 +27,10 @@ const createSendToken = (user, statusCode, req, res) => {
     ),
     // secure: true,
     httpOnly: true,
-    secure: req.secure || req.headers('x-forwarded-proto') === 'https';
+    secure: req.secure || req.headers['x-forwarded-proto'] === 'https'
   });
 
-  console.log(cookieOptions.expires);
+  // console.log(cookieOptions.expires);
 
   // Remove password from the output
   user.password = undefined;
@@ -45,7 +45,12 @@ const createSendToken = (user, statusCode, req, res) => {
 };
 
 exports.signup = catchAsync(async (req, res, next) => {
-  const newUser = await User.create(req.body);
+  const newUser = await User.create({
+    name: req.body.name,
+    email: req.body.email,
+    password: req.body.password,
+    passwordConfirm: req.body.passwordConfirm
+  });
 
   const url = `${req.protocol}://${req.get('host')}/me`;
   console.log(url);
@@ -236,7 +241,7 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
   // 3. Update changedPasswordAt property for the current user
 
   // 4. Log the user in, send the JWT to the client
-  const token = signToken(user._id);
+  // const token = signToken(user._id);
 
   createSendToken(user, 200, req, res);
 });
@@ -255,6 +260,7 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
   user.passwordConfirm = req.body.passwordConfirm;
 
   await user.save();
+  // User.findByIdAndUpdate will NOT work as intended!
 
   // 4. Log user in, send JWT
   createSendToken(user, 200, req, res);
