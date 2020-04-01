@@ -8564,29 +8564,27 @@ var bookTour = function bookTour(tourId) {
 
         case 3:
           session = _context.sent;
-          console.log(session); // 2. Create checkout form + charge credit card
-
-          _context.next = 7;
+          _context.next = 6;
           return regeneratorRuntime.awrap(stripe.redirectToCheckout({
             sessionId: session.data.session.id
           }));
 
-        case 7:
-          _context.next = 13;
+        case 6:
+          _context.next = 12;
           break;
 
-        case 9:
-          _context.prev = 9;
+        case 8:
+          _context.prev = 8;
           _context.t0 = _context["catch"](0);
           console.log(_context.t0);
           (0, _alerts.showAlert)('error', _context.t0);
 
-        case 13:
+        case 12:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[0, 9]]);
+  }, null, null, [[0, 8]]);
 };
 
 exports.bookTour = bookTour;
@@ -8893,8 +8891,8 @@ if (userDataForm) {
     var form = new FormData();
     form.append('name', document.getElementById('name').value);
     form.append('email', document.getElementById('email').value);
-    form.append('photo', document.getElementById('photo').files[0]);
-    console.log(form);
+    form.append('photo', document.getElementById('photo').files[0]); // console.log(form);
+
     (0, _updateSettings.updateSettings)(form, 'data');
   });
 }
@@ -8971,7 +8969,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64216" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57678" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
