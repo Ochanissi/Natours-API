@@ -9,13 +9,13 @@ dotenv.config({ path: './config.env' });
 
 console.log(process.env);
 
-const DB = process.env.DATABASE.replace(
+const DB = process.env.NATOURS_DATABASE.replace(
   '<PASSWORD>',
-  process.env.DATABASE_PASSWORD
+  process.env.NATOURS_DATABASE_PASSWORD
 );
 
 mongoose
-  // .connect(process.env.DATABASE_LOCAL, {
+  // .connect(process.env.NATOURS_DATABASE_LOCAL, {
   .connect(DB, {
     useNewUrlParser: true,
     useCreateIndex: true,

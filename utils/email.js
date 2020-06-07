@@ -9,7 +9,7 @@ module.exports = class Email {
     this.to = user.email;
     this.firstName = user.name.split(' ')[0];
     this.url = url;
-    this.from = `Mirel Bitoi <${process.env.EMAIL_FROM}>`;
+    this.from = `Mirel Bitoi <${process.env.NATOURS_EMAIL_FROM}>`;
   }
 
   newTransport() {
@@ -18,18 +18,18 @@ module.exports = class Email {
       return nodemailer.createTransport({
         service: 'SendGrid',
         auth: {
-          user: process.env.SENDGRID_USERNAME,
-          pass: process.env.SENDGRID_PASSWORD
+          user: process.env.NATOURS_SENDGRID_USERNAME,
+          pass: process.env.NATOURS_SENDGRID_PASSWORD
         }
       });
     }
 
     return nodemailer.createTransport({
-      host: process.env.EMAIL_HOST,
-      port: process.env.EMAIL_PORT,
+      host: process.env.NATOURS_EMAIL_HOST,
+      port: process.env.NATOURS_EMAIL_PORT,
       auth: {
-        user: process.env.EMAIL_USERNAME,
-        pass: process.env.EMAIL_PASSWORD
+        user: process.env.NATOURS_EMAIL_USERNAME,
+        pass: process.env.NATOURS_EMAIL_PASSWORD
       }
     });
   }
