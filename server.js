@@ -13,13 +13,13 @@ const app = require('./app');
 
 // console.log(process.env);
 
-const DB = process.env.DATABASE.replace(
+const DB = process.env.NATOURS_DATABASE.replace(
   '<PASSWORD>',
-  process.env.DATABASE_PASSWORD
+  process.env.NATOURS_DATABASE_PASSWORD
 );
 
 mongoose
-  // .connect(process.env.DATABASE_LOCAL, {
+  // .connect(process.env.NATOURS_DATABASE_LOCAL, {
   .connect(DB, {
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -30,7 +30,7 @@ mongoose
     console.log('DB connection successful!');
   });
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5002;
 const server = app.listen(port, () => {
   console.log(`App running on port ${port}...`);
 });
